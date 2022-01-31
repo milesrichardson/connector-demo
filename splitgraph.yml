@@ -1,0 +1,265 @@
+repositories:
+- namespace: CHANGEME
+  repository: airbyte-stripe
+  # Catalog-specific metadata for the repository. Optional.
+  metadata:
+    readme:
+      text: Readme
+    description: Description of the repository
+    topics:
+    - sample_topic
+  # Data source settings for the repository. Optional.
+  external:
+    # Name of the credential that the plugin uses. This can also be a credential_id if the
+    # credential is already registered on Splitgraph.
+    credential: airbyte-stripe
+    plugin: airbyte-stripe
+    # Plugin-specific parameters matching the plugin's parameters schema
+    params:
+      normalization_mode: basic  # Post-ingestion normalization. Whether to normalize raw Airbyte tables. `none` is no normalization, `basic` is Airbyte's basic normalization, `custom` is a custom dbt transformation on the data.. One of none, basic, custom
+      normalization_git_branch: master # dbt model Git branch. Branch or commit hash to use for the normalization dbt project.
+      account_id: '' # Account ID. Your Stripe account ID (starts with 'acct_', find yours <a href="https://dashboard.stripe.com/settings/account">here</a>).
+      start_date: '2017-01-25T00:00:00Z' # Start Date. UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+      lookback_window_days: 0 # Lookback Window (in days). When set, the connector will always reload data from the past N days, where N is the value set here. This is useful if your data is updated after creation.
+    tables:
+      sample_table:
+        # Plugin-specific table parameters matching the plugin's schema
+        options:
+          airbyte_cursor_field: []  # Cursor field(s). Fields in this stream to be used as a cursor for incremental replication (overrides Airbyte configuration's cursor_field)
+          airbyte_primary_key_field: [] # Primary key field(s). Fields in this stream to be used as a primary key for deduplication (overrides Airbyte configuration's primary_key)
+        # Schema of the table, a list of objects with `name` and `type`. If set to `[]`, will infer. 
+        schema: []
+    # Whether live querying is enabled for the plugin (creates a "live" tag in the
+    # repository proxying to the data source). The plugin must support live querying.
+    is_live: false
+    # Ingestion schedule settings. Disable this if you're using GitHub Actions or other methods
+    # to trigger ingestion.
+    schedule:
+- namespace: CHANGEME
+  repository: snowflake
+  # Catalog-specific metadata for the repository. Optional.
+  metadata:
+    readme:
+      text: Readme
+    description: Description of the repository
+    topics:
+    - sample_topic
+  # Data source settings for the repository. Optional.
+  external:
+    # Name of the credential that the plugin uses. This can also be a credential_id if the
+    # credential is already registered on Splitgraph.
+    credential: snowflake
+    plugin: snowflake
+    # Plugin-specific parameters matching the plugin's parameters schema
+    params:
+      database: ''  # REQUIRED. Database. Snowflake database name
+      schema: '' # Schema. Snowflake schema
+      warehouse: '' # Warehouse. Warehouse name
+      role: '' # Role. Role
+      batch_size: 0 # Batch size. Default fetch size for remote queries
+      envvars: {} # Environment variables. Environment variables to set on the engine side
+    tables:
+      sample_table:
+        # Plugin-specific table parameters matching the plugin's schema
+        options:
+          subquery: ''  # Subquery. Subquery for this table to run on the server side
+        # Schema of the table, a list of objects with `name` and `type`. If set to `[]`, will infer. 
+        schema: []
+    # Whether live querying is enabled for the plugin (creates a "live" tag in the
+    # repository proxying to the data source). The plugin must support live querying.
+    is_live: true
+    # Ingestion schedule settings. Disable this if you're using GitHub Actions or other methods
+    # to trigger ingestion.
+    schedule:
+- namespace: CHANGEME
+  repository: airbyte-asana
+  # Catalog-specific metadata for the repository. Optional.
+  metadata:
+    readme:
+      text: Readme
+    description: Description of the repository
+    topics:
+    - sample_topic
+  # Data source settings for the repository. Optional.
+  external:
+    # Name of the credential that the plugin uses. This can also be a credential_id if the
+    # credential is already registered on Splitgraph.
+    credential: airbyte-asana
+    plugin: airbyte-asana
+    # Plugin-specific parameters matching the plugin's parameters schema
+    params:
+      normalization_mode: basic  # Post-ingestion normalization. Whether to normalize raw Airbyte tables. `none` is no normalization, `basic` is Airbyte's basic normalization, `custom` is a custom dbt transformation on the data.. One of none, basic, custom
+      normalization_git_branch: master # dbt model Git branch. Branch or commit hash to use for the normalization dbt project.
+    tables:
+      sample_table:
+        # Plugin-specific table parameters matching the plugin's schema
+        options:
+          airbyte_cursor_field: []  # Cursor field(s). Fields in this stream to be used as a cursor for incremental replication (overrides Airbyte configuration's cursor_field)
+          airbyte_primary_key_field: [] # Primary key field(s). Fields in this stream to be used as a primary key for deduplication (overrides Airbyte configuration's primary_key)
+        # Schema of the table, a list of objects with `name` and `type`. If set to `[]`, will infer. 
+        schema: []
+    # Whether live querying is enabled for the plugin (creates a "live" tag in the
+    # repository proxying to the data source). The plugin must support live querying.
+    is_live: false
+    # Ingestion schedule settings. Disable this if you're using GitHub Actions or other methods
+    # to trigger ingestion.
+    schedule:
+- namespace: CHANGEME
+  repository: airbyte-cart
+  # Catalog-specific metadata for the repository. Optional.
+  metadata:
+    readme:
+      text: Readme
+    description: Description of the repository
+    topics:
+    - sample_topic
+  # Data source settings for the repository. Optional.
+  external:
+    # Name of the credential that the plugin uses. This can also be a credential_id if the
+    # credential is already registered on Splitgraph.
+    credential: airbyte-cart
+    plugin: airbyte-cart
+    # Plugin-specific parameters matching the plugin's parameters schema
+    params:
+      normalization_mode: basic  # Post-ingestion normalization. Whether to normalize raw Airbyte tables. `none` is no normalization, `basic` is Airbyte's basic normalization, `custom` is a custom dbt transformation on the data.. One of none, basic, custom
+      normalization_git_branch: master # dbt model Git branch. Branch or commit hash to use for the normalization dbt project.
+      store_name: '' # Store name. All API URLs start with https://[mystorename.com]/api/v1/, where [mystorename.com] is the domain name of your store.
+      start_date: '2021-01-01T00:00:00Z' # Start Date. The date from which you'd like to replicate the data
+    tables:
+      sample_table:
+        # Plugin-specific table parameters matching the plugin's schema
+        options:
+          airbyte_cursor_field: []  # Cursor field(s). Fields in this stream to be used as a cursor for incremental replication (overrides Airbyte configuration's cursor_field)
+          airbyte_primary_key_field: [] # Primary key field(s). Fields in this stream to be used as a primary key for deduplication (overrides Airbyte configuration's primary_key)
+        # Schema of the table, a list of objects with `name` and `type`. If set to `[]`, will infer. 
+        schema: []
+    # Whether live querying is enabled for the plugin (creates a "live" tag in the
+    # repository proxying to the data source). The plugin must support live querying.
+    is_live: false
+    # Ingestion schedule settings. Disable this if you're using GitHub Actions or other methods
+    # to trigger ingestion.
+    schedule:
+- namespace: CHANGEME
+  repository: airbyte-braintree
+  # Catalog-specific metadata for the repository. Optional.
+  metadata:
+    readme:
+      text: Readme
+    description: Description of the repository
+    topics:
+    - sample_topic
+  # Data source settings for the repository. Optional.
+  external:
+    # Name of the credential that the plugin uses. This can also be a credential_id if the
+    # credential is already registered on Splitgraph.
+    credential: airbyte-braintree
+    plugin: airbyte-braintree
+    # Plugin-specific parameters matching the plugin's parameters schema
+    params:
+      normalization_mode: basic  # Post-ingestion normalization. Whether to normalize raw Airbyte tables. `none` is no normalization, `basic` is Airbyte's basic normalization, `custom` is a custom dbt transformation on the data.. One of none, basic, custom
+      normalization_git_branch: master # dbt model Git branch. Branch or commit hash to use for the normalization dbt project.
+      merchant_id: '' # Merchant Id. <a href="https://docs.airbyte.io/integrations/sources/braintree">Merchant ID</a> is the unique identifier for entire gateway account.
+      public_key: '' # Public Key. This is your user-specific public identifier for Braintree.
+      start_date: '2020' # Start Date. The date from which you'd like to replicate data for Braintree API for UTC timezone, All data generated after this date will be replicated.
+      environment: sandbox # Environment specifies where the data will come from.. One of sandbox, production, qa, development
+    tables:
+      sample_table:
+        # Plugin-specific table parameters matching the plugin's schema
+        options:
+          airbyte_cursor_field: []  # Cursor field(s). Fields in this stream to be used as a cursor for incremental replication (overrides Airbyte configuration's cursor_field)
+          airbyte_primary_key_field: [] # Primary key field(s). Fields in this stream to be used as a primary key for deduplication (overrides Airbyte configuration's primary_key)
+        # Schema of the table, a list of objects with `name` and `type`. If set to `[]`, will infer. 
+        schema: []
+    # Whether live querying is enabled for the plugin (creates a "live" tag in the
+    # repository proxying to the data source). The plugin must support live querying.
+    is_live: false
+    # Ingestion schedule settings. Disable this if you're using GitHub Actions or other methods
+    # to trigger ingestion.
+    schedule:
+- namespace: CHANGEME
+  repository: airbyte-bing-ads
+  # Catalog-specific metadata for the repository. Optional.
+  metadata:
+    readme:
+      text: Readme
+    description: Description of the repository
+    topics:
+    - sample_topic
+  # Data source settings for the repository. Optional.
+  external:
+    # Name of the credential that the plugin uses. This can also be a credential_id if the
+    # credential is already registered on Splitgraph.
+    credential: airbyte-bing-ads
+    plugin: airbyte-bing-ads
+    # Plugin-specific parameters matching the plugin's parameters schema
+    params:
+      normalization_mode: basic  # Post-ingestion normalization. Whether to normalize raw Airbyte tables. `none` is no normalization, `basic` is Airbyte's basic normalization, `custom` is a custom dbt transformation on the data.. One of none, basic, custom
+      normalization_git_branch: master # dbt model Git branch. Branch or commit hash to use for the normalization dbt project.
+      accounts: # Accounts. Account selection strategy.. Choose one of:
+      -  # All accounts assigned to your user. Fetch data for all available accounts.
+        selection_strategy: all  # REQUIRED. Constant
+      - # Subset of your accounts. Fetch data for subset of account ids.
+        selection_strategy: subset  # REQUIRED. Constant
+        ids: [] # REQUIRED. List of accounts from which data will be fetched.
+      customer_id: '' # User's customer ID.
+      user_id: '' # Unique user identifier.
+      reports_start_date: '2020-01-01' # From which date perform initial sync for report related streams. In YYYY-MM-DD format
+      hourly_reports: false # Hourly reports. The report data will be aggregated by each hour of the day.
+      daily_reports: false # Daily reports. The report data will be aggregated by each day.
+      weekly_reports: false # Weekly reports. The report data will be aggregated by each week running from Sunday through Saturday.
+      monthly_reports: false # Monthly reports. The report data will be aggregated by each month.
+    tables:
+      sample_table:
+        # Plugin-specific table parameters matching the plugin's schema
+        options:
+          airbyte_cursor_field: []  # Cursor field(s). Fields in this stream to be used as a cursor for incremental replication (overrides Airbyte configuration's cursor_field)
+          airbyte_primary_key_field: [] # Primary key field(s). Fields in this stream to be used as a primary key for deduplication (overrides Airbyte configuration's primary_key)
+        # Schema of the table, a list of objects with `name` and `type`. If set to `[]`, will infer. 
+        schema: []
+    # Whether live querying is enabled for the plugin (creates a "live" tag in the
+    # repository proxying to the data source). The plugin must support live querying.
+    is_live: false
+    # Ingestion schedule settings. Disable this if you're using GitHub Actions or other methods
+    # to trigger ingestion.
+    schedule:
+- namespace: CHANGEME
+  repository: dbt-sample
+  external:
+    plugin: dbt
+    credential: dbt-sample
+    params:
+      sources:
+      - dbt_source_name: CHANGEME_airbyte_stripe
+        namespace: CHANGEME
+        repository: airbyte-stripe
+        hash_or_tag: latest
+      - dbt_source_name: CHANGEME_snowflake
+        namespace: CHANGEME
+        repository: snowflake
+        hash_or_tag: latest
+      - dbt_source_name: CHANGEME_airbyte_asana
+        namespace: CHANGEME
+        repository: airbyte-asana
+        hash_or_tag: latest
+      - dbt_source_name: CHANGEME_airbyte_cart
+        namespace: CHANGEME
+        repository: airbyte-cart
+        hash_or_tag: latest
+      - dbt_source_name: CHANGEME_airbyte_braintree
+        namespace: CHANGEME
+        repository: airbyte-braintree
+        hash_or_tag: latest
+      - dbt_source_name: CHANGEME_airbyte_bing_ads
+        namespace: CHANGEME
+        repository: airbyte-bing-ads
+        hash_or_tag: latest
+      git_branch: $THIS_SHA
+    is_live: false
+    tables: {}
+  metadata:
+    description: Sample dbt model
+    readme:
+      text: "## Sample dbt model\n\nThis is an autogenerated model referencing data\
+        \ from:\n\n  * [/CHANGEME/airbyte-stripe](/CHANGEME/airbyte-stripe)\n  * [/CHANGEME/snowflake](/CHANGEME/snowflake)\n\
+        \  * [/CHANGEME/airbyte-asana](/CHANGEME/airbyte-asana)\n  * [/CHANGEME/airbyte-cart](/CHANGEME/airbyte-cart)\n\
+        \  * [/CHANGEME/airbyte-braintree](/CHANGEME/airbyte-braintree)\n  * [/CHANGEME/airbyte-bing-ads](/CHANGEME/airbyte-bing-ads)"

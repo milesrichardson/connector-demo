@@ -1,0 +1,177 @@
+# Move this file to .github/workflows/build.yml
+name: Build datasets on Splitgraph
+on: workflow_dispatch
+jobs:
+  CHANGEME_airbyte_stripe:
+    name: Build CHANGEME/airbyte-stripe
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Splitgraph
+      uses: splitgraph/setup-splitgraph@master
+      with:
+        splitgraph_deployment_url: splitgraph.com
+        splitgraph_api_key: ${{ secrets.SPLITGRAPH_API_KEY }}
+        splitgraph_api_secret: ${{ secrets.SPLITGRAPH_API_SECRET }}
+    - name: Set up data source credentials
+      run: echo "$CREDENTIALS_YML" > splitgraph.credentials.yml
+      shell: bash
+      env:
+        CREDENTIALS_YML: ${{secrets.SPLITGRAPH_CREDENTIALS_YML}}
+    - name: Run sgr cloud sync to perform the data load into a private repo
+      run: sgr cloud sync --remote splitgraph --initial-private --use-file -f splitgraph.yml
+        -f splitgraph.credentials.yml --wait CHANGEME/airbyte-stripe
+      shell: bash
+    - name: Run sgr cloud load to set up metadata
+      run: sgr cloud load --remote splitgraph --skip-external -f splitgraph.yml -f
+        splitgraph.credentials.yml CHANGEME/airbyte-stripe
+      shell: bash
+  CHANGEME_snowflake:
+    name: Build CHANGEME/snowflake
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Splitgraph
+      uses: splitgraph/setup-splitgraph@master
+      with:
+        splitgraph_deployment_url: splitgraph.com
+        splitgraph_api_key: ${{ secrets.SPLITGRAPH_API_KEY }}
+        splitgraph_api_secret: ${{ secrets.SPLITGRAPH_API_SECRET }}
+    - name: Set up data source credentials
+      run: echo "$CREDENTIALS_YML" > splitgraph.credentials.yml
+      shell: bash
+      env:
+        CREDENTIALS_YML: ${{secrets.SPLITGRAPH_CREDENTIALS_YML}}
+    - name: Run sgr cloud load to set up metadata and data source settings
+      run: sgr cloud load --remote splitgraph --initial-private -f splitgraph.yml
+        -f splitgraph.credentials.yml CHANGEME/snowflake
+      shell: bash
+  CHANGEME_airbyte_asana:
+    name: Build CHANGEME/airbyte-asana
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Splitgraph
+      uses: splitgraph/setup-splitgraph@master
+      with:
+        splitgraph_deployment_url: splitgraph.com
+        splitgraph_api_key: ${{ secrets.SPLITGRAPH_API_KEY }}
+        splitgraph_api_secret: ${{ secrets.SPLITGRAPH_API_SECRET }}
+    - name: Set up data source credentials
+      run: echo "$CREDENTIALS_YML" > splitgraph.credentials.yml
+      shell: bash
+      env:
+        CREDENTIALS_YML: ${{secrets.SPLITGRAPH_CREDENTIALS_YML}}
+    - name: Run sgr cloud sync to perform the data load into a private repo
+      run: sgr cloud sync --remote splitgraph --initial-private --use-file -f splitgraph.yml
+        -f splitgraph.credentials.yml --wait CHANGEME/airbyte-asana
+      shell: bash
+    - name: Run sgr cloud load to set up metadata
+      run: sgr cloud load --remote splitgraph --skip-external -f splitgraph.yml -f
+        splitgraph.credentials.yml CHANGEME/airbyte-asana
+      shell: bash
+  CHANGEME_airbyte_cart:
+    name: Build CHANGEME/airbyte-cart
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Splitgraph
+      uses: splitgraph/setup-splitgraph@master
+      with:
+        splitgraph_deployment_url: splitgraph.com
+        splitgraph_api_key: ${{ secrets.SPLITGRAPH_API_KEY }}
+        splitgraph_api_secret: ${{ secrets.SPLITGRAPH_API_SECRET }}
+    - name: Set up data source credentials
+      run: echo "$CREDENTIALS_YML" > splitgraph.credentials.yml
+      shell: bash
+      env:
+        CREDENTIALS_YML: ${{secrets.SPLITGRAPH_CREDENTIALS_YML}}
+    - name: Run sgr cloud sync to perform the data load into a private repo
+      run: sgr cloud sync --remote splitgraph --initial-private --use-file -f splitgraph.yml
+        -f splitgraph.credentials.yml --wait CHANGEME/airbyte-cart
+      shell: bash
+    - name: Run sgr cloud load to set up metadata
+      run: sgr cloud load --remote splitgraph --skip-external -f splitgraph.yml -f
+        splitgraph.credentials.yml CHANGEME/airbyte-cart
+      shell: bash
+  CHANGEME_airbyte_braintree:
+    name: Build CHANGEME/airbyte-braintree
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Splitgraph
+      uses: splitgraph/setup-splitgraph@master
+      with:
+        splitgraph_deployment_url: splitgraph.com
+        splitgraph_api_key: ${{ secrets.SPLITGRAPH_API_KEY }}
+        splitgraph_api_secret: ${{ secrets.SPLITGRAPH_API_SECRET }}
+    - name: Set up data source credentials
+      run: echo "$CREDENTIALS_YML" > splitgraph.credentials.yml
+      shell: bash
+      env:
+        CREDENTIALS_YML: ${{secrets.SPLITGRAPH_CREDENTIALS_YML}}
+    - name: Run sgr cloud sync to perform the data load into a private repo
+      run: sgr cloud sync --remote splitgraph --initial-private --use-file -f splitgraph.yml
+        -f splitgraph.credentials.yml --wait CHANGEME/airbyte-braintree
+      shell: bash
+    - name: Run sgr cloud load to set up metadata
+      run: sgr cloud load --remote splitgraph --skip-external -f splitgraph.yml -f
+        splitgraph.credentials.yml CHANGEME/airbyte-braintree
+      shell: bash
+  CHANGEME_airbyte_bing_ads:
+    name: Build CHANGEME/airbyte-bing-ads
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Splitgraph
+      uses: splitgraph/setup-splitgraph@master
+      with:
+        splitgraph_deployment_url: splitgraph.com
+        splitgraph_api_key: ${{ secrets.SPLITGRAPH_API_KEY }}
+        splitgraph_api_secret: ${{ secrets.SPLITGRAPH_API_SECRET }}
+    - name: Set up data source credentials
+      run: echo "$CREDENTIALS_YML" > splitgraph.credentials.yml
+      shell: bash
+      env:
+        CREDENTIALS_YML: ${{secrets.SPLITGRAPH_CREDENTIALS_YML}}
+    - name: Run sgr cloud sync to perform the data load into a private repo
+      run: sgr cloud sync --remote splitgraph --initial-private --use-file -f splitgraph.yml
+        -f splitgraph.credentials.yml --wait CHANGEME/airbyte-bing-ads
+      shell: bash
+    - name: Run sgr cloud load to set up metadata
+      run: sgr cloud load --remote splitgraph --skip-external -f splitgraph.yml -f
+        splitgraph.credentials.yml CHANGEME/airbyte-bing-ads
+      shell: bash
+  CHANGEME_dbt_sample:
+    name: Build CHANGEME/dbt-sample
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Splitgraph
+      uses: splitgraph/setup-splitgraph@master
+      with:
+        splitgraph_deployment_url: splitgraph.com
+        splitgraph_api_key: ${{ secrets.SPLITGRAPH_API_KEY }}
+        splitgraph_api_secret: ${{ secrets.SPLITGRAPH_API_SECRET }}
+    - name: Set up dbt Git URL
+      run: echo "$CREDENTIALS_YML" > splitgraph.credentials.yml && sed -i "s|\$THIS_REPO_URL|https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY|g"
+        splitgraph.credentials.yml && sed -i "s|\$THIS_SHA|$GITHUB_SHA|g" splitgraph.yml
+      shell: bash
+      env:
+        CREDENTIALS_YML: ${{secrets.SPLITGRAPH_CREDENTIALS_YML}}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: Run sgr cloud sync to perform the data load into a private repo
+      run: sgr cloud sync --remote splitgraph --initial-private --use-file -f splitgraph.yml
+        -f splitgraph.credentials.yml --wait CHANGEME/dbt-sample
+      shell: bash
+    - name: Run sgr cloud load to set up metadata
+      run: sgr cloud load --remote splitgraph --skip-external -f splitgraph.yml -f
+        splitgraph.credentials.yml CHANGEME/dbt-sample
+      shell: bash
+    needs:
+    - CHANGEME_airbyte_stripe
+    - CHANGEME_snowflake
+    - CHANGEME_airbyte_asana
+    - CHANGEME_airbyte_cart
+    - CHANGEME_airbyte_braintree
+    - CHANGEME_airbyte_bing_ads

@@ -1,0 +1,33 @@
+# This file defines all data sources referenced by this model. The mapping
+# between the data source name and the Splitgraph repository is in the settings of the dbt plugin
+# in splitgraph.yml (see params -> sources)
+version: 2
+sources:
+- name: CHANGEME_airbyte_stripe
+  # Splitgraph will use a different temporary schema for this source by patching this project
+  # at runtime, so this is for informational purposes only. 
+  schema: CHANGEME/airbyte-stripe
+  # We can't currently infer the tables produced by a data source at project generation time,
+  # so for now you'll need to define the tables manually.
+  tables:
+  - name: some_table
+- name: CHANGEME_snowflake
+  schema: CHANGEME/snowflake
+  tables:
+  - name: some_table
+- name: CHANGEME_airbyte_asana
+  schema: CHANGEME/airbyte-asana
+  tables:
+  - name: some_table
+- name: CHANGEME_airbyte_cart
+  schema: CHANGEME/airbyte-cart
+  tables:
+  - name: some_table
+- name: CHANGEME_airbyte_braintree
+  schema: CHANGEME/airbyte-braintree
+  tables:
+  - name: some_table
+- name: CHANGEME_airbyte_bing_ads
+  schema: CHANGEME/airbyte-bing-ads
+  tables:
+  - name: some_table
