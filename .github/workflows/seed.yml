@@ -1,0 +1,42 @@
+name: Generate Splitgraph project
+on:
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: 'Project seed (`ey...`)'
+        required: true
+      deployment_url:
+        description: "Splitgraph deployment URL"
+        required: false
+        default: splitgraph.com
+jobs:
+  seed:
+    name: Generate the project
+    runs-on: ubuntu-20.04
+    permissions:
+      # We need to be able to alter workflows since this action generates
+      # a build.yml file and checks it in.
+      actions: write
+      contents: write
+    steps:
+    - uses: actions/checkout@v2
+    - name: Configure Git
+      run: |
+        git config --local user.name "Splitgraph via GitHub Actions"
+        git config --global user.email "admin@splitgraph.com"
+    - name: Set up Splitgraph
+      uses: splitgraph/setup-splitgraph@master
+      with:
+        splitgraph_deployment_url: ${{ github.event.inputs.deployment_url }}
+        splitgraph_api_key: ${{ secrets.SPLITGRAPH_API_KEY }}
+        splitgraph_api_secret: ${{ secrets.SPLITGRAPH_API_SECRET }}
+    - name: Run sgr cloud seed
+      run: |
+        sgr cloud seed --remote splitgraph --github-repository $GITHUB_REPOSITORY ${{ github.event.inputs.seed }}
+        { echo "# Move this file to .github/workflows/build.yml"; cat .github/workflows/build.yml; } > build.moveme.yml
+        rm .github/workflows/build.yml
+    - name: Commit and push the changes
+      run: |
+        git add .
+        git commit --message "Generate initial project"
+        git push
